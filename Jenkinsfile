@@ -8,6 +8,8 @@ pipeline {
             environment {
         AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+         REDIS_HOST     = credentials('REDIS_HOST')
+        REDIS_PORT = credentials('REDIS_PORT')
     }
             steps {
                 sh 'py.test --verbose --junit-xml test-reports/results.xml app.py'
