@@ -4,13 +4,14 @@ pipeline {
         stage('Build') {
             agent { dockerfile true }
             steps {
-                sh 'python -m py_compile sources/add2vals.py sources/calc.py'
+                sh 'docker build -t kunwarluthera/simple-python-py .'
             }
         }
         stage('Test') { 
             agent { dockerfile true }
             steps {
                 sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py' 
+                sh 'docker run -d kunwarluthera/simple-python-py python app.py -- --coverage'
             }
             post {
                 always {
