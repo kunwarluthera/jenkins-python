@@ -1,22 +1,17 @@
 pipeline {
-    agent none
-          environment {
-        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
-        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
-         REDIS_HOST     = credentials('REDIS_HOST')
-        REDIS_PORT = credentials('REDIS_PORT')
-    }
-    stages {
-        stage('Build') {
-            agent { dockerfile {
-                args '-p 5000:5000'
-            } }
-      
-            steps {
-                sh 'python  app.py'
-            }
+  environment {
+    registry = "kunwarluthera/jenkins-docker"
+    registryCredential = 'dockerhub'
+  }
+  agent any
+  stages {
+    stage('Building image') {
+        agent { dockerfile true}
+      steps{
+        script {
+          docker.build registry + ":$BUILD_NUMBER"
         }
+      }
     }
-}
-
-        
+  }
+}      
