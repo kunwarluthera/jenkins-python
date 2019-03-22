@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             agent { dockerfile true }
             steps {
-                sh 'docker build -t kunwarluthera/simple-python-py .'
+                sh 'docker build -t kunwarluthera/simple-python-py ./var/jenkins_home/workspace/simple-python-pyinstaller-app'
             }
         }
         stage('Test') { 
