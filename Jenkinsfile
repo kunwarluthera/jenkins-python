@@ -3,10 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             agent { dockerfile {
-                filename 'Dockerfile'
-                dir '/var/jenkins_home/workspace/simple-python-pyinstaller-app/'
-                additionalBuildArgs  '--build-arg version=1.0.2'
-                args 'python /var/jenkins_home/workspace/simple-python-pyinstaller-app/app.py -- --coverage'
+                args '-v 5000:5000'
             } }
             steps {
                 sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
