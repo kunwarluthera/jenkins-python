@@ -12,7 +12,7 @@ pipeline {
         REDIS_PORT = credentials('REDIS_PORT')
     }
             steps {
-                sh 'py.test --verbose --junit-xml test-reports/results.xml app.py'
+                sh 'python  app.py'
             }
         }
     }
