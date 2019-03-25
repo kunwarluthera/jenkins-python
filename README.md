@@ -19,3 +19,17 @@ Sample Application
 ### Elastic Beanstalk Configuration for deployment in ElasticBeanstalk
 
 ![ElasticBeanStalk](images/Deploy_ElasticBeanstalk.png)
+
+# Project Specific Changes 
+
+### Source Code Management 
+
+![SourceCodeManagement](images/Source_Code_Management_Git.png)
+
+### Build
+
+![Build](images/Build.png)
+
+### Post Build Actions
+
+![PostBuildActions](images/Post_Build.png)
