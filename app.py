@@ -13,11 +13,11 @@ REDIS_HOST= os.environ['REDIS_HOST']
 REDIS_PORT= os.environ['REDIS_PORT']
 
 def client_method(service,region):
-    client = boto3.client(service,aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'], region_name=region)
+    client = boto3.client(service,aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY, region_name=region)
     return "received the "+ str(service) + str(region)
 
-client = boto3.client('s3',aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'], region_name='us-east-1')
-client_ec2 = boto3.client('ec2',aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'], region_name='us-east-1')
+client = boto3.client('s3',aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY, region_name='us-east-1')
+client_ec2 = boto3.client('ec2',aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY, region_name='us-east-1')
 #print(client)
 app = Flask(__name__)
 
