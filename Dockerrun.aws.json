@@ -3,7 +3,7 @@
     "containerDefinitions" :[
     {
         "name": "python-dev-app",
-        "image": "kunwarluthera/jenkins-docker",
+        "image": "kunwarluthera/jenkins-python",
         "hostname": "python-dev-app",
         "essential": true,
         "memory": 128,
