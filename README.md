@@ -78,7 +78,7 @@ USER jenkins`
 ![InitialSystemSettings](images/Global_Configuration_Change.png)
 
 
-##Docker hub configuration setting
+### Docker hub configuration setting
 
 ![dockerhub](images/docker-hub-creds-jenkins.png)
 
