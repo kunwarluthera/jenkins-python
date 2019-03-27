@@ -77,8 +77,6 @@ USER jenkins`
 
 ![InitialSystemSettings](images/Global_Configuration_Change.png)
 
-<br>
-<br>
 
 ##Docker hub configuration setting
 
