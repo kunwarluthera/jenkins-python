@@ -12,7 +12,8 @@
 6. Need a Github Repo which will be used to trigger the build in jenkins on successful code push to repo. (For Production deployment)
 7. Need a Docker hub account in order to push the image to Docker hub on successful build. (For Production deployment)
 8. Need AWS ElasticBeanstalk environment to be setup to deploy docker images and run container out of it. (For Production deployment)
-9. Tested the final REST API Endpoint exposed by ElasticBeanstalk
+9. Tested the final REST API Endpoint exposed by ElasticBeanstalk.
+10. Successful end-end CICD pipeline
 
 
 ## Imp Step to expose the jenkins localhost for the webhooks integration, we used "ngrok"
