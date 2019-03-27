@@ -102,6 +102,7 @@ us 'ngrok' to expose your localhost to the internet for the webhooks to work.
 ## Create webhooks with the exposed jenkins URL created by 'ngrok'
 
 ![Webhooks](images/webhooks.png)
+![Webhooks](images/webhooks-git-pull.png)
 
 ### Jenkins Project settings 
 
@@ -119,7 +120,7 @@ us 'ngrok' to expose your localhost to the internet for the webhooks to work.
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/kunwarluthera/simple-python-pyinstaller-app.git'
+        git 'https://github.com/kunwarluthera/jenkins-python.git'
       }
     }
     stage('Building image') {
@@ -143,7 +144,11 @@ us 'ngrok' to expose your localhost to the internet for the webhooks to work.
 stage('Remove Unused docker image') {
   steps{
     sh "docker rmi $my_registry:$BUILD_NUMBER"
+    sh "docker rmi $my_registry:latest"
   }
 }
   }
 }`
+
+![pipeline](images/pipeline-screenshot-1.png)
+![pipeline](images/pipeline-screenshot-2.png)
