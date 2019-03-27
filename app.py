@@ -62,7 +62,7 @@ def hello():
     if request.method == 'POST':
         return "POST METHOD RECEIVED"
     else:
-        return "MY FIRST Flask API inside docker, and I have seen {} times".format(count)
+        return "MY Flask API inside docker, and I have seen {} times".format(count)
 
 @app.route("/admin")
 def admin():
