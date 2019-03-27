@@ -67,44 +67,6 @@ root@7257c1de559b:/# chmod 777 /var/run/docker.sock
 
 # Project Specific Changes 
 
-### Source Code Management 
-
-![SourceCodeManagement](images/Source_Code_Management_Git.png)
-
-### Build
-
-![Build](images/Build.png)
-
-### Post Build Actions
-
-![PostBuildActions](images/Post_Build.png)
-![PostBuildActionss3](images/Post_Build_s3.png)
-
-### ElasticBeanstalk Security Group and Environment Variables setup 
-
-![EBSecurityGroup](images/EB-SecurityGroupUpdated.png)
-![EBEnvironmentVariables](images/EB-EnviornmentVariables.png)
-
-### Redis Screenshot with Security Group Updated
-
-![Redis](images/Redis-Screenshot-UpdatedSecurityGroup.png)
-
-### Final EB Environment setup and deployment successful 
-
-![EBDeploy](images/Elastic-Beanstalk-DockerAppDeployed.png)
-
-### Setup Webhooks between Jenkins and Github.
-
-us 'ngrok' to expose your localhost to the internet for the webhooks to work.
-
-### Ex --> ./ngrok http 8080
-
-## Create webhooks with the exposed jenkins URL created by 'ngrok'
-
-![Webhooks](images/webhooks.png)
-![Webhooks](images/webhooks-git-pull.png)
-
-### Jenkins Project settings 
 
 1. pipeline 
 
@@ -152,3 +114,43 @@ stage('Remove Unused docker image') {
 
 ![pipeline](images/pipeline-screenshot-1.png)
 ![pipeline](images/pipeline-screenshot-2.png)
+
+2. deployToElasticBeanstalk
+
+### Source Code Management & Build Triggers
+
+![deployToEB](images/deploy-to-eb-build-trigger.png)
+
+### Build
+
+![Build](images/Build.png)
+
+### Post Build Actions
+
+![PostBuildActions](images/Post_Build.png)
+![PostBuildActionss3](images/Post_Build_s3.png)
+
+### ElasticBeanstalk Security Group and Environment Variables setup 
+
+![EBSecurityGroup](images/EB-SecurityGroupUpdated.png)
+![EBEnvironmentVariables](images/EB-EnviornmentVariables.png)
+
+### Redis Screenshot with Security Group Updated
+
+![Redis](images/Redis-Screenshot-UpdatedSecurityGroup.png)
+
+### Final EB Environment setup and deployment successful 
+
+![EBDeploy](images/Elastic-Beanstalk-DockerAppDeployed.png)
+
+### Setup Webhooks between Jenkins and Github.
+
+use 'ngrok' to expose your localhost to the internet for the webhooks to work.
+
+### Ex --> ./ngrok http 8080
+
+## Create webhooks with the exposed jenkins URL created by 'ngrok'
+
+![Webhooks](images/webhooks.png)
+![Webhooks](images/webhooks-git-pull.png)
+
