@@ -26,7 +26,10 @@ RUN apt-get install -y docker-ce
 RUN usermod -a -G docker jenkins
 USER jenkins
 
+Run the Jenkins Image with the command - 
 
+
+Enter the Jenkins Image and run below command
 
 Kunwars-MacBook-Pro:pythondemo kunwarluthera$ docker exec -u root -it jenkins-docker /bin/bash
 root@7257c1de559b:/# 
@@ -89,3 +92,58 @@ root@7257c1de559b:/# chmod 777 /var/run/docker.sock
 ### Final EB Environment setup and deployment successful 
 
 ![EBDeploy](images/Elastic-Beanstalk-DockerAppDeployed.png)
+
+### Setup Webhooks between Jenkins and Github.
+
+us 'ngrok' to expose your localhost to the internet for the webhooks to work.
+
+### Ex --> ./ngrok http 8080
+
+## Create webhooks with the exposed jenkins URL created by 'ngrok'
+
+![Webhooks](images/webhooks.png)
+
+### Jenkins Project settings 
+
+1. pipeline 
+
+#### pipeline Script mentioned
+
+`pipeline {
+  environment {
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+    dockerLatestTag = ''
+  }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/kunwarluthera/simple-python-pyinstaller-app.git'
+      }
+    }
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build my_registry + ":$BUILD_NUMBER"
+          dockerLatestTag = docker.build my_registry + ":latest"
+        }
+      }
+    }
+    stage('Deploy Image') {
+  steps{
+    script {
+      docker.withRegistry( '', registryCredential ) {
+        dockerImage.push()
+        dockerLatestTag.push()
+      }
+    }
+  }
+}
+stage('Remove Unused docker image') {
+  steps{
+    sh "docker rmi $my_registry:$BUILD_NUMBER"
+  }
+}
+  }
+}`
