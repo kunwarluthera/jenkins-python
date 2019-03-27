@@ -29,7 +29,7 @@ Then we run the application to generate an http/https forwarding to localhost wh
 
 ![NGROK](images/ngrok-screenshot.png)
 
-### Complete Configuration done.
+### Complete Configuration process
 
 Run a Jenkins Container using the below Dockerfile and then update the permissions for
 /var/run/docker.sock
@@ -79,6 +79,9 @@ USER jenkins`
 
 <br>
 <br>
+## Docker hub configuration setting
+
+![dockerhub](images/docker-hub-creds-jenkins.png)
 
 ### Docker URL setup 
 
