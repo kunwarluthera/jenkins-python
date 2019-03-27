@@ -79,7 +79,8 @@ USER jenkins`
 
 <br>
 <br>
-## Docker hub configuration setting
+
+##Docker hub configuration setting
 
 ![dockerhub](images/docker-hub-creds-jenkins.png)
 
