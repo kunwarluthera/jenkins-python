@@ -145,7 +145,11 @@ stage('Remove Unused docker image') {
 
 2. deployToElasticBeanstalk
 
-### Source Code Management & Build Triggers
+### Source Code Management 
+
+![deployToEB](images/eb-source-code-management.png)
+
+### Build Triggers
 
 ![deployToEB](images/deploy-to-eb-build-trigger.png)
 
