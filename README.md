@@ -1,6 +1,35 @@
-Sample Application
+# Deployed Python REST API (Using Flask) on AWS ElasticBeanstalk as Docker Image
+# Using Jenkins CICD Pipeline
 
-### Step-1
+
+### Steps involved in successful completion on high level
+
+1. Need to have dockers knowledge and Docker installed on-prem
+2. Need to expose your python code as a REST API using Flask
+3. Create a Docker Image and run the container on-prem for REST API testing. (Can use docker-compose.yml to run more than 1 containers-- in this case it is "redis container" and "Python API Container" )
+4. Need Redis (AWS ElasticCache) for in-memory storage --> used for caching. (For Production deployment)
+5. Need to run Jenkins as a Docker Image and all the configuration done on that container. (For Production deployment)
+6. Need a Github Repo which will be used to trigger the build in jenkins on successful code push to repo. (For Production deployment)
+7. Need a Docker hub account in order to push the image to Docker hub on successful build. (For Production deployment)
+8. Need AWS ElasticBeanstalk environment to be setup to deploy docker images and run container out of it. (For Production deployment)
+9. Tested the final REST API Endpoint exposed by ElasticBeanstalk
+
+
+## Imp Step to expose the jenkins localhost for the webhooks integration, we used "ngrok"
+
+https://dashboard.ngrok.com/get-started
+
+After download we set the auth token 
+
+./ngrok authtoken <Token>
+
+Then we run the application to generate an http/https forwarding to localhost which can be used for webhooks
+
+#### Sample Screenshot for the port forwarding
+
+![NGROK](images/ngrok-screenshot.png)
+
+### Complete Configuration done.
 
 Run a Jenkins Container using the below Dockerfile and then update the permissions for
 /var/run/docker.sock
@@ -26,22 +55,18 @@ RUN apt-get install -y docker-ce
 RUN usermod -a -G docker jenkins
 USER jenkins`
 
-Run the Jenkins Image with the command - 
+#### Run the Jenkins Image with the command - 
 
 
-Enter the Jenkins Image and run below command
+#### Enter the Jenkins Image and run below command to update privileges
 
-Kunwars-MacBook-Pro:pythondemo kunwarluthera$ docker exec -u root -it jenkins-docker /bin/bash
-root@7257c1de559b:/# 
-root@7257c1de559b:/# cat /var/run/docker.sock
-cat: /var/run/docker.sock: No such device or address
-root@7257c1de559b:/# cat /var/run/
-docker.sock  exim4/       lock/        utmp         
-root@7257c1de559b:/# cat /var/run/docker.sock 
-cat: /var/run/docker.sock: No such device or address
-root@7257c1de559b:/# ls -lad /var/run/docker.sock
-srw-rw---- 1 root root 0 Mar 20 12:28 /var/run/docker.sock
-root@7257c1de559b:/# chmod 777 /var/run/docker.sock
+`kunwarluthera$ docker exec -u root -it jenkins-docker /bin/bash`
+`root@:/# `
+`root@:/# cat /var/run/docker.sock`
+`cat: /var/run/docker.sock: No such device or address`
+`root@:/# ls -lad /var/run/docker.sock`
+`srw-rw---- 1 root root 0 Mar 20 12:28 /var/run/docker.sock`
+`root@:/# chmod 777 /var/run/docker.sock`
 
 
 
@@ -145,7 +170,7 @@ stage('Remove Unused docker image') {
 
 ### Setup Webhooks between Jenkins and Github.
 
-use 'ngrok' to expose your localhost to the internet for the webhooks to work.
+used 'ngrok' to expose your localhost to the internet for the webhooks to work.
 
 ### Ex --> ./ngrok http 8080
 
