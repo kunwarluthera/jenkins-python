@@ -110,45 +110,45 @@ USER jenkins`
 
 #### pipeline Script mentioned
 
-`pipeline {
-  environment {
-    registryCredential = 'dockerhub'
-    dockerImage = ''
-    dockerLatestTag = ''
-  }
-  agent any
-  stages {
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/kunwarluthera/jenkins-python.git'
-      }
-    }
-    stage('Building image') {
-      steps{
-        script {
-          dockerImage = docker.build my_registry + ":$BUILD_NUMBER"
-          dockerLatestTag = docker.build my_registry + ":latest"
-        }
-      }
-    }
-    stage('Deploy Image') {
-  steps{
-    script {
-      docker.withRegistry( '', registryCredential ) {
-        dockerImage.push()
-        dockerLatestTag.push()
-      }
-    }
-  }
-}
-stage('Remove Unused docker image') {
-  steps{
-    sh "docker rmi $my_registry:$BUILD_NUMBER"
-    sh "docker rmi $my_registry:latest"
-  }
-}
-  }
-}`
+`pipeline {`
+  `environment {`
+    `registryCredential = 'dockerhub'`
+    `dockerImage = ''`
+    `dockerLatestTag = ''`
+  `}`
+  `agent any`
+  `stages {`
+    `stage('Cloning Git') {`
+      `steps {`
+        `git 'https://github.com/kunwarluthera/jenkins-python.git'`
+      `}`
+    `}`
+    `stage('Building image') {`
+      `steps{`
+        `script {`
+          `dockerImage = docker.build my_registry + ":$BUILD_NUMBER"`
+          `dockerLatestTag = docker.build my_registry + ":latest"`
+        `}`
+      `}`
+    `}`
+    `stage('Deploy Image') {`
+  `steps{`
+    `script {`
+      `docker.withRegistry( '', registryCredential ) {`
+        `dockerImage.push()`
+        `dockerLatestTag.push()`
+      `}`
+    `}`
+  `}`
+`}`
+`stage('Remove Unused docker image') {`
+  `steps{`
+    `sh "docker rmi $my_registry:$BUILD_NUMBER"`
+    `sh "docker rmi $my_registry:latest"`
+  `}`
+`}`
+  `}`
+`}`
 
 ![pipeline](images/pipeline-screenshot-1.png)
 ![pipeline](images/pipeline-screenshot-2.png)
