@@ -56,8 +56,13 @@ RUN apt-get install -y docker-ce
 RUN usermod -a -G docker jenkins
 USER jenkins`
 
-#### Run the Jenkins Image with the command - 
+#### Create the Jenkins Image 
 
+`docker build -t kunwarluthera/jenkins-docker .`
+
+#### Run the Jenkins Container with the command - 
+
+`docker run --name jenkins-docker -p 8080:8080 -v /var/run/docker.sock:/var/run/docker.sock kunwarluthera/jenkins-docker:latest`
 
 #### Enter the Jenkins Image and run below command to update privileges
 
@@ -88,6 +93,11 @@ USER jenkins`
 ![Architecture](images/Docker_Builder_URL.png)
 <br>
 <br>
+
+### Github Pull Request 
+
+![githubpull](images/github-pull.png)
+
 
 ### Elastic Beanstalk Configuration for deployment in ElasticBeanstalk
 
