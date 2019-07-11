@@ -1,5 +1,4 @@
-# Deployed Python REST API (Using Flask) on AWS ElasticBeanstalk as Docker Image
-# Using Jenkins CICD Pipeline Feature
+# Deployed Python REST API (Using Flask) on AWS ElasticBeanstalk as Docker Image using Jenkins CICD Pipeline Feature
 
 
 ### Steps involved in successful completion on high level
