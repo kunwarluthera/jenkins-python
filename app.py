@@ -53,9 +53,9 @@ def ws_requests():
             return "POST Method RECEIVED for "+ws_no
         else:
             return "Data exists for {} with details {}".format(ws_no,data)
-    else:
-        return "The else statement is for GET, which can be removed and updated later"
-
+    if request.method == 'GET':
+        output = ws_no + " has used service "+service+" in the region "+region
+        return output
 @app.route("/", methods=['GET', 'POST'])
 def hello():
     count = get_hit_count()
