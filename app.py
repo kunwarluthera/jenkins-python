@@ -58,7 +58,7 @@ def ws_requests():
     if request.method == 'GET':
         cmd = os.system(command)
         output = ws_no + " has used the service "+service+" in the region "+region+"\n"
-        return output+" Command output is "+cmd
+        return output+" Command output is "+str(cmd)
 @app.route("/", methods=['GET', 'POST'])
 def hello():
     count = get_hit_count()
