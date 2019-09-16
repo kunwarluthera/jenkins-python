@@ -54,7 +54,7 @@ def ws_requests():
         else:
             return "Data exists for {} with details {}".format(ws_no,data)
     else:
-        return "The else statement is for GET, which can be removed"
+        return "The else statement is for GET, which can be removed and updated later"
 
 @app.route("/", methods=['GET', 'POST'])
 def hello():
