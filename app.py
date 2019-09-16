@@ -46,6 +46,8 @@ def ws_requests():
     ws_no = str(request.args.get('ws_no'))
     service = str(request.args.get('service'))
     region = str(request.args.get('region'))
+    print("ws_no is {}".format(ws_no))
+    print("service is {}".format(service))
     data = get_cached_data(ws_no)
     if request.method == 'POST':
         if data == None:
