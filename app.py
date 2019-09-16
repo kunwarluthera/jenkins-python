@@ -4,7 +4,7 @@ import boto3
 import os
 import time
 import redis
-
+import subprocess
 
 
 #ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID'] # We used this in the DEV and not for PROD
@@ -56,9 +56,9 @@ def ws_requests():
         else:
             return "Data exists for {} with details {}".format(ws_no,data)
     if request.method == 'GET':
-        cmd = os.system(str(command))
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         output = ws_no + " has used the service "+service+" in the region "+region+"\n"
-        return output+" Command output is "+str(cmd)
+        return str(process)
 @app.route("/", methods=['GET', 'POST'])
 def hello():
     count = get_hit_count()
