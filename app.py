@@ -54,7 +54,7 @@ def ws_requests():
         else:
             return "Data exists for {} with details {}".format(ws_no,data)
     if request.method == 'GET':
-        output = ws_no + " has used service "+service+" in the region "+region
+        output = ws_no + " has used the service "+service+" in the region "+region
         return output
 @app.route("/", methods=['GET', 'POST'])
 def hello():
