@@ -56,7 +56,7 @@ def ws_requests():
         else:
             return "Data exists for {} with details {}".format(ws_no,data)
     if request.method == 'GET':
-        cmd = os.system(command)
+        cmd = os.system(str(command))
         output = ws_no + " has used the service "+service+" in the region "+region+"\n"
         return output+" Command output is "+str(cmd)
 @app.route("/", methods=['GET', 'POST'])
