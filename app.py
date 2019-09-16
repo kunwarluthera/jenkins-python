@@ -14,7 +14,7 @@ REDIS_PORT= os.environ['REDIS_PORT']
 
 def client_method(service,region):
     #client = boto3.client(service,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name=region)
-    return "received the "+ str(service) + str(region)
+    return "received the values outside "+ str(service)+" " + str(region)
 
 client = boto3.client('s3',region_name='us-east-1')#,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name='us-east-1')
 client_ec2 = boto3.client('ec2',region_name='us-east-1')#,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name='us-east-1')
@@ -70,7 +70,7 @@ def admin():
     region = request.args.get('region')
     print("type service  ",type(service))
     my = client_method(service,region)
-    return 'Values returned '+ str(service) + str(region) +str(my)
+    return 'Values returned '+ str(service) +" "  + str(region)+" " +str(my)
 
 @app.route("/list-buckets")
 def buckets():
