@@ -1,4 +1,4 @@
-# THIS IS IN DEV ENVIRONMENT
+# THIS IS IN PROD ENVIRONMENT
 from flask import Flask, request
 import boto3
 import os
@@ -7,7 +7,7 @@ import redis
 
 
 
-#ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID']
+#ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID'] # We used this in the DEV and not for PROD
 #SECRET_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 REDIS_HOST= os.environ['REDIS_HOST']
 REDIS_PORT= os.environ['REDIS_PORT']
