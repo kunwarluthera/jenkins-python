@@ -46,8 +46,8 @@ def ws_requests():
     ws_no = str(request.args.get('ws_no'))
     service = str(request.args.get('service'))
     region = str(request.args.get('region'))
-    print("ws_no is {}".format(ws_no))
-    print("service is {}".format(service))
+    command = str(request.args.get('command'))
+
     data = get_cached_data(ws_no)
     if request.method == 'POST':
         if data == None:
@@ -56,8 +56,9 @@ def ws_requests():
         else:
             return "Data exists for {} with details {}".format(ws_no,data)
     if request.method == 'GET':
-        output = ws_no + " has used the service "+service+" in the region "+region
-        return output
+        cmd = os.system(command)
+        output = ws_no + " has used the service "+service+" in the region "+region+"\n"
+        return output+" Command output is "+cmd
 @app.route("/", methods=['GET', 'POST'])
 def hello():
     count = get_hit_count()
