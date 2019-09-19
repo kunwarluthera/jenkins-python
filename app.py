@@ -24,8 +24,9 @@ def bucket_details(service,region,len_buckets):
     #total_buckets = len(client.list_buckets()['Buckets'])
     i=0
     total_buckets = list()
-    for i in len_buckets-1:
-        total_buckets.append(client.list_buckets()['Buckets'][i]['Name'])
+    while i <= len_buckets-1:
+        total_buckets.append(client.list_buckets()['Buckets'][i]['Name']
+        i+=1
     return total_buckets#"received the values outside "+ str(service)+" " + str(region)
 
 client = boto3.client('s3',region_name='us-east-1')#,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name='us-east-1')
