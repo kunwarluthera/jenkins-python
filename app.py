@@ -14,7 +14,8 @@ REDIS_PORT= os.environ['REDIS_PORT']
 
 def client_method(service,region):
     #client = boto3.client(service,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name=region)
-    return "received the values outside "+ str(service)+" " + str(region)
+    client = boto3.client(service,region_name=region)
+    return client.list_buckets()#"received the values outside "+ str(service)+" " + str(region)
 
 client = boto3.client('s3',region_name='us-east-1')#,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name='us-east-1')
 client_ec2 = boto3.client('ec2',region_name='us-east-1')#,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name='us-east-1')
