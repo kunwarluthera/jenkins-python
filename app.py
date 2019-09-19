@@ -15,14 +15,14 @@ REDIS_PORT = os.environ['REDIS_PORT']
 
 def get_rds_connection():
     try:
-    connection = psycopg2.connect(user = "admin",
-                                  password = "@normanschwar34",
-                                  host = "samsung-dev-rds.lw.erecyclingcorps.com",
-                                  port = "5432",
-                                  database = "wh_samsung")
-    cursor = connection.cursor()
-    print("Connection established ")
-    return cursor
+        connection = psycopg2.connect(user = "admin",
+                                    password = "@normanschwar34",
+                                    host = "samsung-dev-rds.lw.erecyclingcorps.com",
+                                    port = "5432",
+                                    database = "wh_samsung")
+        cursor = connection.cursor()
+        print("Connection established ")
+        return cursor
     except:
         print("The connection with the postgres could not be made")
 
