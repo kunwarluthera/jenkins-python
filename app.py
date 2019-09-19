@@ -116,7 +116,7 @@ def psql():
     try:
         connection = psycopg2.connect(user = "admin",
                                     password = "@normanschwar34",
-                                    host = "dev-samsung-db.cyt6tb8cfudw.us-east-1.rds.amazonaws.com",
+                                    host = "samsung-dev-rds.lw.erecyclingcorps.com",
                                     port = "5432",
                                     database = "wh_samsung")
         cursor = connection.cursor()
@@ -132,7 +132,7 @@ def psql():
     except:
         print("The connection with the postgres could not be made")
     
-    return "rows"
+    return rows
 
 # print(str(buckets()))
 if __name__ == "__main__":
