@@ -129,9 +129,10 @@ def psql():
         for row in record:
             #print(row)
             rows.append(row)
-    return "rows"
     except:
         print("The connection with the postgres could not be made")
+    
+    return "rows"
 
 # print(str(buckets()))
 if __name__ == "__main__":
