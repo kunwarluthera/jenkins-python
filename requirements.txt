@@ -3,3 +3,4 @@ boto3
 pytest
 redis
 psycopg2-binary
+postgres

@@ -129,7 +129,7 @@ def psql():
         for row in record:
             #print(row)
             rows.append(row)
-    return rows
+    return "rows"
     except:
         print("The connection with the postgres could not be made")
 
