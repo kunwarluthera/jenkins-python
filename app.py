@@ -5,7 +5,7 @@ import os
 import time
 import redis
 import subprocess
-
+import psycopg2
 
 # We used this in the DEV and not for PROD
 #ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID']  # This needed for the Dev testing, and not with elasticbeanstalk
