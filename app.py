@@ -65,7 +65,7 @@ def hello():
     if request.method == 'POST':
         return "POST METHOD RECEIVED"
     else:
-        return "MY FIRST Flask API inside docker which is exposed via AWS ElasticBeanstalk and jenkins created via a separate docker image, and I have seen it {} times".format(count)
+        return "Created the initial docker setup for exposing the code as REST API , and I have seen it {} times".format(count)
 
 @app.route("/admin")
 def admin():
