@@ -13,7 +13,30 @@ import psycopg2
 REDIS_HOST = os.environ['REDIS_HOST']
 REDIS_PORT = os.environ['REDIS_PORT']
 
+def get_rds_connection():
+    try:
+    connection = psycopg2.connect(user = "admin",
+                                  password = "@normanschwar34",
+                                  host = "samsung-dev-rds.lw.erecyclingcorps.com",
+                                  port = "5432",
+                                  database = "wh_samsung")
+    cursor = connection.cursor()
+    print("Connection established ")
+    return cursor
+    except:
+        print("The connection with the postgres could not be made")
 
+def get_query_output(cursor):
+    fs_contact_select_Query = " select * from fs_user limit 10;"
+    cursor.execute(fs_contact_select_Query)
+    record = cursor.fetchall()
+    print("Print each row and it's columns values")
+    rows = []
+    for row in record:
+        print(row)
+        rows.append(row)
+    return rows
+    
 def client_method(service, region):
     # client = boto3.client(service,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name=region)
     client = boto3.client(service, region_name=region)#,aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY)
@@ -109,6 +132,13 @@ def buckets():
 def ec2():
     response=client_ec2.describe_instances()
     return str(response)
+
+
+@app.route("/execute-query")
+def psql():
+    cursor = get_rds_connection()
+    rows = get_query_output(cursor)
+    return "The rows returned are as follows:  \n {}".format(rows)
 
 # print(str(buckets()))
 if __name__ == "__main__":
