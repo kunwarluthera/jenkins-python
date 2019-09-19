@@ -15,7 +15,7 @@ REDIS_PORT= os.environ['REDIS_PORT']
 def client_method(service,region):
     #client = boto3.client(service,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name=region)
     client = boto3.client(service,region_name=region,aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY)
-    total_buckets = client.list_buckets()['ResponseMetadata']
+    total_buckets = lne(client.list_buckets()['Buckets'])
     return total_buckets#"received the values outside "+ str(service)+" " + str(region)
 
 client = boto3.client('s3',region_name='us-east-1')#,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name='us-east-1')
@@ -80,9 +80,11 @@ def admin():
 @app.route("/list-buckets")
 def buckets():
     print("Inside List buckets")
-    response = client.list_buckets()
+    service = request.args.get('service')
+    region = request.args.get('region')
+    response = client_method(service,region)
     print("#####################")
-    return str(response)
+    return "Total Number of buckets in the account are {}".format(response)
 
 @app.route("/compute-details")
 def ec2():
