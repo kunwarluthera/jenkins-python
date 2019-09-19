@@ -7,14 +7,14 @@ import redis
 import subprocess
 
 
-#ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID'] # We used this in the DEV and not for PROD
-#SECRET_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID'] # We used this in the DEV and not for PROD
+SECRET_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 REDIS_HOST= os.environ['REDIS_HOST']
 REDIS_PORT= os.environ['REDIS_PORT']
 
 def client_method(service,region):
     #client = boto3.client(service,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name=region)
-    client = boto3.client(service,region_name=region)
+    client = boto3.client(service,region_name=region,aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY)
     return client.list_buckets()#"received the values outside "+ str(service)+" " + str(region)
 
 client = boto3.client('s3',region_name='us-east-1')#,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name='us-east-1')
