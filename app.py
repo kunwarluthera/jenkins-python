@@ -8,7 +8,7 @@ import subprocess
 
 
 # We used this in the DEV and not for PROD
-#ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID']
+#ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID']  # This needed for the Dev testing, and not with elasticbeanstalk
 #SECRET_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 REDIS_HOST = os.environ['REDIS_HOST']
 REDIS_PORT = os.environ['REDIS_PORT']
