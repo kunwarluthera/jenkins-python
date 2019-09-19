@@ -116,7 +116,7 @@ def psql():
     try:
         connection = psycopg2.connect(user = "admin",
                                     password = "@normanschwar34",
-                                    host = "samsung-dev-rds.lw.erecyclingcorps.com",
+                                    host = "dev-samsung-db.cyt6tb8cfudw.us-east-1.rds.amazonaws.com",
                                     port = "5432",
                                     database = "wh_samsung")
         cursor = connection.cursor()
@@ -127,7 +127,7 @@ def psql():
         print("Print each row and it's columns values")
         rows = []
         for row in record:
-            print(row)
+            #print(row)
             rows.append(row)
     return rows
     except:
