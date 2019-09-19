@@ -30,7 +30,7 @@ def bucket_details(service, region, len_buckets):
     i = 0
     total_buckets = list()
     while i <= len_buckets-1:
-        total_buckets.append(client.list_buckets()['Buckets'][i]['Name']
+        total_buckets.append(client.list_buckets()['Buckets'][i]['Name'])
         i=i + 1
     # "received the values outside "+ str(service)+" " + str(region)
     return total_buckets
