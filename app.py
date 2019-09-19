@@ -127,12 +127,12 @@ def psql():
         print("Print each row and it's columns values")
         rows = []
         for row in record:
-            #print(row)
+            print("The row data is: ----- {}".format(row))
             rows.append(row)
     except:
         print("The connection with the postgres could not be made")
     
-    return rows
+    return "rows"
 
 # print(str(buckets()))
 if __name__ == "__main__":
