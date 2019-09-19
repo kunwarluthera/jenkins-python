@@ -8,16 +8,15 @@ import subprocess
 
 
 # We used this in the DEV and not for PROD
-ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID']
-SECRET_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+#ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID']
+#SECRET_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 REDIS_HOST = os.environ['REDIS_HOST']
 REDIS_PORT = os.environ['REDIS_PORT']
 
 
 def client_method(service, region):
     # client = boto3.client(service,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name=region)
-    client = boto3.client(service, region_name=region,
-                          aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY)
+    client = boto3.client(service, region_name=region)#,aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY)
     len_buckets = len(client.list_buckets()['Buckets'])
     # "received the values outside "+ str(service)+" " + str(region)
     return len_buckets
