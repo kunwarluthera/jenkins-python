@@ -2,3 +2,4 @@ Flask
 boto3
 pytest
 redis
+postgres
