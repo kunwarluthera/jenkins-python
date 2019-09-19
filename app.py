@@ -15,7 +15,17 @@ REDIS_PORT= os.environ['REDIS_PORT']
 def client_method(service,region):
     #client = boto3.client(service,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name=region)
     client = boto3.client(service,region_name=region,aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY)
-    total_buckets = lne(client.list_buckets()['Buckets'])
+    len_buckets = len(client.list_buckets()['Buckets'])
+    return len_buckets#"received the values outside "+ str(service)+" " + str(region)
+
+def bucket_details(service,region,len_buckets):
+    #client = boto3.client(service,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name=region)
+    #client = boto3.client(service,region_name=region,aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY)
+    #total_buckets = len(client.list_buckets()['Buckets'])
+    i=0
+    total_buckets = list()
+    for i in len_buckets-1:
+        total_buckets.append(client.list_buckets()['Buckets'][i]['Name'])
     return total_buckets#"received the values outside "+ str(service)+" " + str(region)
 
 client = boto3.client('s3',region_name='us-east-1')#,'''aws_access_key_id=ACCESS_KEY,aws_secret_access_key=SECRET_KEY,''' region_name='us-east-1')
@@ -83,8 +93,9 @@ def buckets():
     service = request.args.get('service')
     region = request.args.get('region')
     response = client_method(service,region)
+    total_buckets = bucket_details(service,region,response)
     print("#####################")
-    return "Total Number of buckets in the account are {}".format(response)
+    return "Total Number of buckets in the account are {}. \n The list of buckets are :- \n {}".format(response,total_buckets)
 
 @app.route("/compute-details")
 def ec2():
